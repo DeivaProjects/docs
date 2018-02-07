@@ -12,17 +12,7 @@ AWS accounts are included in a project through a project variable of the type `A
 
 ![AWS Account Variable](aws-account-variable.png "width=500")
 
-The `Add Variable` window is then displayed and lists all the AWS accounts, as well as an account called `Role Assigned to the AWS Instance Executing the Deployment`.
-
-The `Role Assigned to the AWS Instance Executing the Deployment` account can be selected to defer to the IAM role that is assigned to the AWS EC2 instance where the deployment is executed from. This means no AWS credentials need to be stored by Octopus.
-
-The `Role Assigned to the AWS Instance Executing the Deployment` account always exists, meaning it does not need to be created like a `Amazon Web Services Account`.
-
-Because CloudFormation deployments are performed on the Octopus server today, the Octopus server must be installed on an EC2 instance that has an IAM role assigned to it in order to take advantage of the `Role Assigned to the AWS Instance Executing the Deployment` account.
-
-:::hint
-In future it is expected that AWS steps will be deployed from worker instances that can be hosted on separate EC2 instances with IAM roles assigned to them. This will make the `Role Assigned to the AWS Instance Executing the Deployment` account more flexible and powerful.
-:::
+The `Add Variable` window is then displayed and lists all the AWS accounts.
 
 Select the account that was created in the previous step to assign it to the variable.
 
@@ -36,13 +26,17 @@ Add the `Deploy a CloudFormation template` step to the project, and provide it a
 
 ### AWS Section
 
-Select the variable that references the `Amazon Web Services Account` under the `AWS Account` section.
+Select the variable that references the `Amazon Web Services Account` under the `AWS Account` section or select whether you wish to execute using the service role of an EC2 instance.
 
 ![AWS Account](step-aws-account.png "width=500")
 
-The supplied account can optionally be used to assume a second role. This can be used to run the AWS commands with a role that limits the services that can be affected.
+The supplied account can optionally be used to assume a different AWS service role. This can be used to run the AWS commands with a role that limits the services that can be affected.
 
 ![AWS Role](step-aws-role.png "width=500")
+
+:::hint
+If you select `Yes` to `Execute using the AWS service role for an EC2 instance`, you do not need an AWS account or account variable. Instead the AWS service role for the EC2 instance executing the deployment will be used. See the [AWS documentation](https://g.octopushq.com/AwsDocsRolesTermsAndConcepts) for more information on service roles.
+:::
 
 ### Template Section
 
@@ -53,6 +47,20 @@ You can also optionally wait for the stack to complete before finishing the step
 :::hint
 Unselecting the `Wait for completion` checkbox will allow the step to complete once that CloudFormation process has been started. However unselecting the option does mean that the output variables may be missing or outdated, because they will be read before the stack has finished deploying. It also means that the step will not fail if the CloudFormation deployment fails.
 :::
+
+If creating the CloudFormation stack, you can select `Disable rollback` to prevent a failed stack from being rolled back. This is useful if you need to debug the resources that were not created successfully.
+
+#### IAM Capabilities
+
+This is a quote from the [AWS documentation](http://g.octopushq.com/AwsDocsControllingIAM):
+
+> Before you can create a stack, AWS CloudFormation validates your template. During validation, AWS CloudFormation checks your template for IAM resources that it might create. IAM resources, such as an IAM user with full access, can access and modify any resource in your AWS account. Therefore, we recommend that you review the permissions associated with each IAM resource before proceeding so that you don't unintentionally create resources with escalated permissions. To ensure that you've done so, you must acknowledge that the template contains those resources, giving AWS CloudFormation the specified capabilities before it creates the stack.
+
+To acknowledge that the CloudFormation template contains IAM resources, you can select an option under `IAM Resources`.
+
+If your template includes IAM resources, you can select `The template has IAM resources (CAPABILITY_IAM)` or `The template has IAM resources with custom names (CAPABILITY_NAMED_IAM)`.
+
+If your template includes custom names for IAM resources, you must select `The template has IAM resources with custom names (CAPABILITY_NAMED_IAM)`.
 
 ![AWS Region](step-aws-region.png "width=500")
 
@@ -154,6 +162,10 @@ To resolve the error, ensure that the user has the appropriate permissions in AW
 
 ### AWS-CLOUDFORMATION-ERROR-0008
 An unrecognized exception was thrown while creating a CloudFormation stack.
+
+If the following text `Requires capabilities : [CAPABILITY_NAMED_IAM]` or `Requires capabilities : [CAPABILITY_IAM]` appears in the error message, you will need to define these capabilities in the CloudFormation deployment step.
+
+![IAM Capabilities](iam-capabilities.png "width=500")
 
 ### AWS-CLOUDFORMATION-ERROR-0009
 The AWS account used to perform the operation does not have the required permissions to delete the CloudFormation stack.
