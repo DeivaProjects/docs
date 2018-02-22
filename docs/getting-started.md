@@ -6,7 +6,7 @@ position: 0
 
 Welcome!
 
-This section provides an overview of Octopus Deploy by explaining how Octopus Deploy fits into your application delivery pipeline. It provides an overview of the major concepts in Octopus and links to the relevant documentation, which explore the concepts further and guide you through implementing them with your own Octopus.
+This section provides an overview of Octopus Deploy by explaining how Octopus Deploy fits into your application delivery pipeline. It provides an overview of the major concepts in Octopus and links to the relevant documentation, which explore the concepts further and guide you through implementing them with your own on-premises Octopus or Octopus Cloud.
 
 ## Octopus in Your Delivery Process {#Gettingstarted-Octopusinyourdeliveryprocess}
 
@@ -36,17 +36,25 @@ We designed Octopus Deploy to fit into teams that follow agile delivery practice
 
 As an Octopus user, you define the process for deploying the software. You specify the environments the applications are deployed to and who on your team can deploy to which environments; for instance, you might want testers to deploy to test environments, but not to production. Taking this approach means that even if different members of the team trigger deployments, the deployment process remains consistent.
 
-The rest of this guide goes into more detail about working with  Octopus Deploy and links to the relevant sections of the documentation for more information.
+The rest of this guide goes into more detail about working with Octopus Deploy and links to the relevant sections of the documentation for more information.
 
-## Install Octopus Deploy
+Octopus Deploy is available as both an [on-premises](/docs/getting-started.md#On-premises-Octopus) offering or as a hosted offering called [Octopus Cloud](/docs/getting-started.md#Octopus-Cloud).
 
-Installing [Octopus Deploy](/docs/installation/index.md) sets up the central [Octopus Deploy Server](/docs/installation/index.md), which provides the **Octopus Web Portal** and the [Octopus REST API](/docs/api-and-integration/api/index.md).
+## On-premises Octopus
 
-The [installation documentation](/docs/installation/index.md) provides the instructions for installing and configuring your Octopus Deploy server.
+Installing on-premises [Octopus Deploy](/docs/installation/index.md) sets up the central [Octopus Deploy Server](/docs/installation/index.md), which provides the **Octopus Web Portal** and the [Octopus REST API](/docs/api-and-integration/api/index.md).
 
-### Access the Octopus Web Portal
+The [installation documentation](/docs/installation/index.md) provides the instructions for installing and configuring your on-presmises Octopus Deploy server.
 
-Once Octopus is installed you can access the Octopus Web Portal. This is where you'll manage your infrastructure, projects, access the built-in repository, and deploy your applications from.
+## Octopus Cloud
+
+**Octopus Cloud** is the hosted version of Octopus Deploy. We designed Octopus Cloud and on-premises Octopus to provide the same functionality. There are some minor [differences](need a content and link), and of course with Hosted Octopus, we're taking care of XXXX
+
+You can sign up for Hosted Octopus at [www.octopus.com/accounts/register](www.octopus.com/accounts/register).
+
+## Access the Octopus Web Portal
+
+The Octopus Web Portal is where you'll manage your infrastructure, projects, access the built-in repository, grant your team access to projects, and deploy your applications from.
 
 ![Octopus Dashboard](octopus-dashboard.png "width=500")
 
