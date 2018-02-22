@@ -48,7 +48,7 @@ The [installation documentation](/docs/installation/index.md) provides the instr
 
 ## Octopus Cloud
 
-**Octopus Cloud** is the hosted version of Octopus Deploy. We designed Octopus Cloud and on-premises Octopus to provide the same functionality. There are some minor [differences](need a content and link), and of course with Hosted Octopus, we're taking care of XXXX
+**Octopus Cloud** is the hosted version of Octopus Deploy. We designed Octopus Cloud and on-premises Octopus to provide the same functionality. There are some minor [differences](need a content and link), and of course with Hosted Octopus, we're taking care of the service so you can focus on your deployments.
 
 You can sign up for Hosted Octopus at [www.octopus.com/accounts/register](www.octopus.com/accounts/register).
 
