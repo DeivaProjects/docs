@@ -6,7 +6,7 @@ position: 0
 
 Welcome!
 
-This section provides an overview of Octopus Deploy by explaining how Octopus Deploy fits into your application delivery pipeline. It provides an overview of the major concepts in Octopus and links to the relevant documentation, which explore the concepts further and guide you through implementing them with your own self-hosted Octopus or Octopus Cloud.
+This section provides an overview of Octopus Deploy by explaining how Octopus Deploy fits into your application delivery pipeline. It provides an overview of the major concepts in Octopus and links to the relevant documentation, which explore the concepts further and guide you through implementing them with your own [self-hosted Octopus](/docs/getting-started.md#self-hosted-octopus) or [Octopus Cloud](/docs/getting-started.md#octopus-cloud).
 
 ## Octopus in Your Delivery Process {#Gettingstarted-Octopusinyourdeliveryprocess}
 
@@ -48,7 +48,7 @@ The [installation documentation](/docs/installation/index.md) provides the instr
 
 ## Octopus Cloud
 
-**Octopus Cloud** is the hosted version of Octopus Deploy. We designed Octopus Cloud and self-hosted Octopus to provide the same functionality. There are some minor [differences](need a content and link), and with Octopus Cloud, we're taking care of the service so you can focus on your deployments.
+**Octopus Cloud** is the hosted version of Octopus Deploy. We designed Octopus Cloud and self-hosted Octopus to provide the same functionality. There are some minor differences in [responsibilities](/docs/administration/security#responsibility) in that we're responsible for  taking backups, upgrading the service, maintaining and monitoring the underlying systems.
 
 You can sign up for Octopus Cloud at [www.octopus.com/accounts/register](www.octopus.com/accounts/register).
 
